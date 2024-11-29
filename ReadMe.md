@@ -20,7 +20,7 @@ The `apk` folder contains scripts and configuration files for installing and uni
 ## Kong Folder
 The `kong` folder contains scripts and configuration files for installing and uninstalling Kong Gateway.
 
-- **[kong/config.sh](kong/config.sh)**: Configuration script for Kong Gateway.
+- **[kong/config.sh](kong/config.sh)**: Configuration script with default values and argument parsing.
 - **[kong/gateway-class.yaml](kong/gateway-class.yaml)**: YAML configuration for GatewayClass.
 - **[kong/gateway.yaml](kong/gateway.yaml)**: YAML configuration for Gateway.
 - **[kong/install.sh](kong/install.sh)**: Script to install Kong Gateway.
@@ -29,3 +29,14 @@ The `kong` folder contains scripts and configuration files for installing and un
 ### Usage
 1. **Install Kong Gateway**: Run `./kong/install.sh -n=<namespace> -h=<helm_name>` to install the Kong Gateway.
 2. **Uninstall Kong Gateway**: Run `./kong/uninstall.sh -n=<namespace> -h=<helm_name>` to uninstall the Kong Gateway.
+
+## Kong Example Folder
+The `kong-example` folder contains example scripts and configuration files for setting up a sample environment with Kong Gateway.
+
+- **[kong/example/httproute.yaml](kong/example/sample-app.yaml)**: YAML configuration for a sample HTTPROUTE.
+- **[kong/example/install.sh](kong/example/install.sh)**: Script to install the sample application with Kong Gateway.
+- **[kong/example/uninstall.sh](kong/example/uninstall.sh)**: Script to uninstall the sample application with Kong Gateway.
+
+### Usage
+1. **Install Sample Application**: Run `./kong-example/install.sh -n=<namespace> -h=<helm_name>` to install the sample application with Kong Gateway.
+2. **Uninstall Sample Application**: Run `./kong-example/uninstall.sh -n=<namespace> -h=<helm_name>` to uninstall the sample application with Kong Gateway.
