@@ -24,6 +24,9 @@ kubectl delete -f gateway-class.yaml
 echo $'\n# Remove Kong repo #'
 helm repo remove kong
 
+echo $'\n# Uninstall Kong gateway CRDs #'
+kubectl delete -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.1.0/standard-install.yaml
+
 echo $'\n# Delete namespace #'
 BLA::start_loading_animation "${BLA_braille_whitespace[@]}"
 kubectl delete ns $namespace --ignore-not-found

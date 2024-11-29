@@ -13,6 +13,9 @@ echo $'helm name: '$helm_name$''
 echo $'\n# Create namespace #'
 kubectl create ns $namespace
 
+echo $'\n# Install Kong gateway CRDs #'
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.1.0/standard-install.yaml
+
 echo $'\n# Create gateway CRD #'
 kubectl apply -f gateway-class.yaml
 
