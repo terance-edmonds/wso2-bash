@@ -31,8 +31,9 @@ helm repo remove wso2apk
 helm repo remove wso2apkagent
 helm repo remove ingress-nginx
 
-echo $'\n# Delete namespace #'
+echo $'\n# Delete namespaces #'
 kubectl delete ns $namespace
+kubectl delete ns ingress-nginx
 
 echo $'\n=== Uninstall completed ==='
 BLA::stop_loading_animation

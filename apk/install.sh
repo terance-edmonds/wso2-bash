@@ -8,6 +8,7 @@ source ./config.sh "$@"
 
 echo $'### Installing APK With Control Plane (Developer Driven) ###'
 echo $'namespace: '$namespace$''
+echo $'ingress namespace: ingress-nginx'
 echo $'helm APIM name: '$helm_apim_name$''
 echo $'helm APK name: '$helm_apk_name$''
 echo $'helm APIM-APK Agent name: '$helm_agent_name$''
@@ -28,7 +29,7 @@ BLA::stop_loading_animation
 
 echo $'\n# Install Nginx Ingress #'
 BLA::start_loading_animation "${BLA_braille_whitespace[@]}"
-helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace $namespace
+helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace
 BLA::stop_loading_animation
 
 echo $'\n# Install APK DP #'
