@@ -20,8 +20,8 @@ env:
   cluster_cert: /etc/secrets/kong-cluster-cert/tls.crt
   cluster_cert_key: /etc/secrets/kong-cluster-cert/tls.key
 
-  admin_gui_url: http://localhost:8002
-  admin_gui_api_url: http://localhost:8001
+  admin_gui_url: http://manager.konghq.com
+  admin_gui_api_url: http://admin.konghq.com
   # Change the secret and set cookie_secure to true if using a HTTPS endpoint
   admin_gui_session_conf: '{"secret":"secret","storage":"kong","cookie_secure":false}'
   
@@ -55,7 +55,7 @@ admin:
     
  ingress:
    enabled: true
-   hostname: localhost
+   hostname: admin.konghq.com
    path: /
    pathType: Prefix
    ingressClassName: kong
@@ -81,7 +81,7 @@ manager:
      
   ingress:
     enabled: true
-    hostname: localhost
+    hostname: manager.konghq.com
     path: /
     pathType: Prefix
     ingressClassName: kong

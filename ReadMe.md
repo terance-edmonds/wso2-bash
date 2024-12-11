@@ -14,7 +14,7 @@ The `apk` folder contains scripts and configuration files for installing and uni
 - **[apk/uninstall.sh](apk/uninstall.sh)**: Script to uninstall APK with Control Plane.
 
 ```bash
-# port forward config deployer
+# port forward apk gateway service
 kubectl port-forward -n apk svc/apk-wso2-apk-gateway-service 9095
 # port forward ingress controller
 kubectl port-forward -n ingress-nginx service/ingress-nginx-controller 443
@@ -70,9 +70,5 @@ The `kong/cp-dp` folder contains example scripts and configuration files for set
 
 ```bash
 # port forward proxy
-kubectl port-forward -n kong service/kong-dp-kong-proxy 80:8000
-# port forward cp admin9001
-kubectl port-forward -n kong service/kong-cp-kong-admin 8001
-# port forward manager
-kubectl port-forward -n kong service/kong-cp-kong-manager 8002
+kubectl port-forward -n kong service/kong-dp-kong-proxy 80
 ```
