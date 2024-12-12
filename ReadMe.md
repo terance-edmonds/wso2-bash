@@ -71,4 +71,6 @@ The `kong/cp-dp` folder contains example scripts and configuration files for set
 ```bash
 # port forward proxy
 kubectl port-forward -n kong service/kong-dp-kong-proxy 80
+# port forward admin api
+kubectl port-forward -n kong service/kong-cp-kong-admin 8001
 ```
