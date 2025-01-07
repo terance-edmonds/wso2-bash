@@ -1,12 +1,12 @@
 #! /bin/bash
 
-source ../loader.sh
+source ../../loader.sh
 trap BLA::stop_loading_animation SIGINT
 
 # Source the configuration file
-source ./config.sh "$@" 
+source ../config.sh "$@" 
 
-echo $'### Installing APK With Control Plane (Developer Driven) ###'
+echo $'### Installing APK With Control Plane (Portal Driven) ###'
 echo $'namespace: '$namespace$''
 echo $'ingress namespace: ingress-nginx'
 echo $'helm APIM name: '$helm_apim_name$''
@@ -24,7 +24,7 @@ helm repo update
 
 echo $'\n# Install APIM CP #'
 BLA::start_loading_animation "${BLA_braille_whitespace[@]}"
-helm install $helm_apim_name wso2apim/wso2am-cp --version 4.4.0-1 -f https://raw.githubusercontent.com/wso2/apk/main/helm-charts/samples/apim/cp/apk-cp/4.4.0-values.yaml -n $namespace
+helm install $helm_apim_name wso2apim/wso2am-cp --version 4.4.0-1 -f https://raw.githubusercontent.com/wso2/apk/main/helm-charts/samples/apim/cp/4.4.0-values.yaml -n $namespace
 BLA::stop_loading_animation
 
 echo $'\n# Install Nginx Ingress #'
@@ -34,13 +34,13 @@ BLA::stop_loading_animation
 
 echo $'\n# Install APK DP #'
 BLA::start_loading_animation "${BLA_braille_whitespace[@]}"
-helm install $helm_apk_name wso2apk/apk-helm --version 1.2.0 -f https://raw.githubusercontent.com/wso2/apk/main/helm-charts/samples/apk/1.2.0-values.yaml -n $namespace
+helm install $helm_apk_name wso2apk/apk-helm --version 1.2.0 -f https://raw.githubusercontent.com/wso2/apk/main/helm-charts/samples/apk/1.2.0-cp-enabled-values.yaml -n $namespace
 BLA::stop_loading_animation
 
 
 echo $'\n# Install APIM-APK Agent #'
 BLA::start_loading_animation "${BLA_braille_whitespace[@]}"
-helm install $helm_agent_name wso2apkagent/apim-apk-agent --version 1.2.0 -f https://raw.githubusercontent.com/wso2/apk/main/helm-charts/samples/apim-apk-agent/cp/1.2.0-values.yaml -n $namespace
+helm install $helm_agent_name wso2apkagent/apim-apk-agent --version 1.2.0 -f https://raw.githubusercontent.com/wso2/apk/main/helm-charts/samples/apim-apk-agent/1.2.0-values.yaml -n $namespace
 BLA::stop_loading_animation
 
 

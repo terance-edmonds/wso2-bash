@@ -1,13 +1,13 @@
 #!/bin/bash
 
-source ../loader.sh
+source ../../loader.sh
 trap BLA::stop_loading_animation SIGINT
 
 BLA::start_loading_animation "${BLA_braille_whitespace[@]}"
 # Source the configuration file
-source ./config.sh "$@" 
+source ../config.sh "$@" 
 
-echo $'### Uninstalling APK With Control Plane (Developer Driven) ###'
+echo $'### Uninstalling APK With Control Plane (Portal Driven) ###'
 echo $'namespace: '$namespace$''
 echo $'helm APIM name: '$helm_apim_name$''
 echo $'helm APK name: '$helm_apk_name$''
