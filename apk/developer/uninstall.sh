@@ -22,6 +22,9 @@ helm uninstall $helm_apk_name -n $namespace
 echo $'\n# Uninstall APIM CP #'
 helm uninstall $helm_apim_name -n $namespace
 
+echo $'\n# Uninstall Cert Manager #'
+kubectl remove -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.2/cert-manager.yaml -n $namespace
+
 echo $'\n# Uninstall Nginx Ingress #'
 helm uninstall ingress-nginx -n $namespace
 
