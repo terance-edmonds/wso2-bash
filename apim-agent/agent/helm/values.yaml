@@ -17,7 +17,7 @@
 wso2:
   subscription:
     imagePullSecrets: ""
-# replicaCount: 1
+replicaCount: 1
 image:
   repository: apim-agent
   tag: 1.2.0-SNAPSHOT

@@ -60,6 +60,8 @@ spec:
               value: apim-apk-agent-service.{{ .Release.Namespace }}.svc
             - name: APIM_APK_AGENT_GRPC_PORT
               value: "18000"
+            - name: APIM_AGENT_GRPC_PORT
+              value: "19000"
           volumeMounts:
             - name: log-conf-volume
               mountPath: /home/wso2/conf/
