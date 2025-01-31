@@ -52,16 +52,14 @@ spec:
               protocol: "TCP"
             {{ end }}
           env:
-            - name: APIM_APK_AGENT_PRIVATE_KEY_PATH
+            - name: APIM_AGENT_PRIVATE_KEY_PATH
               value: /home/wso2/security/keystore/apk-agent.key
-            - name: APIM_APK_AGENT_PUBLIC_CERT_PATH
+            - name: APIM_AGENT_PUBLIC_CERT_PATH
               value: /home/wso2/security/keystore/apk-agent.crt
-            - name: APIM_APK_AGENT_SERVER_NAME
+            - name: APIM_AGENT_SERVER_NAME
               value: apim-apk-agent-service.{{ .Release.Namespace }}.svc
-            - name: APIM_APK_AGENT_GRPC_PORT
-              value: "18000"
             - name: APIM_AGENT_GRPC_PORT
-              value: "19000"
+              value: "18000"
           volumeMounts:
             - name: log-conf-volume
               mountPath: /home/wso2/conf/

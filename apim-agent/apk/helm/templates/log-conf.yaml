@@ -31,6 +31,7 @@ data:
     
     [agent]
         mode = "{{ .Values.agent.mode }}"
+        pluginPath = "{{ .Values.agent.pluginPath }}"
   log_config.toml: |
     # The logging configuration for Adapter
 

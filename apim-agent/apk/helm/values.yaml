@@ -48,6 +48,7 @@ metrics:
   enabled: false
 agent:
   mode: CPtoDP
+  pluginPath: /home/wso2/agents/apk.so
 certmanager:
   enabled: true
 serviceAccount:
