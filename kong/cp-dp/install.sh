@@ -16,6 +16,15 @@ echo $'\n# Add Kong repo #'
 helm repo add kong https://charts.konghq.com
 helm repo update
 
+echo $'\n# Install Kong gateway CRDs #'
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.1.0/standard-install.yaml
+
+echo $'\n# Create gateway CRD #'
+kubectl apply -f gateway-class.yaml
+
+echo $'\n# Create gateway CR #'
+kubectl apply -f gateway.yaml -n $namespace
+
 echo $'\n# Create kong enterprise free mode license #'
 kubectl create secret generic kong-enterprise-license --from-literal=license="'{}'" -n $namespace
 
