@@ -1,0 +1,47 @@
+# apiVersion: gateway.networking.k8s.io/v1
+# kind: Gateway
+# metadata:
+#     name: kong
+# spec:
+#     gatewayClassName: kong
+#     listeners:
+#     - name: proxy
+#       port: 8000
+#       protocol: HTTP
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kong-tls-secret
+  namespace: apk
+type: kubernetes.io/tls
+data:
+  tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJ4ekNDQVV5Z0F3SUJBZ0lVWHBrcldjWms1ZnlvOFY5MGREektWbjF6c2lFd0NnWUlLb1pJemowRUF3SXcKR2pFWU1CWUdBMVVFQXd3UGEyOXVaMTlqYkhWemRHVnlhVzVuTUI0WERUSTFNREl5TkRBME1UQTBObG9YRFRJNApNREl5TkRBME1UQTBObG93R2pFWU1CWUdBMVVFQXd3UGEyOXVaMTlqYkhWemRHVnlhVzVuTUhZd0VBWUhLb1pJCnpqMENBUVlGSzRFRUFDSURZZ0FFbkpVM2lWUkNmcmtzbTNDVlB1OGdGbHY0RWRlUUNFZnRJekhGdWpQUVY0UmMKL1FVMlRkWjY2cERSSTFaMEVOcGZaNGx3NFZROFlrcS9Ra0pYU2o3Z01ncDBnWm5odXRhRHpZWHpEOVZOZC8yNgpzMG5ORHNTaUlCRmI2TlA5TTRlZG8xTXdVVEFkQmdOVkhRNEVGZ1FVYmNieE04SXhEYTJBVVlodUhFOU1PVTIxCmhkWXdId1lEVlIwakJCZ3dGb0FVYmNieE04SXhEYTJBVVlodUhFOU1PVTIxaGRZd0R3WURWUjBUQVFIL0JBVXcKQXdFQi96QUtCZ2dxaGtqT1BRUURBZ05wQURCbUFqRUFtUWs2ZkV3WEk3Vm9FbHFjdUMxLzRRTU5hNTJhK3RvVgorRGdBN3VxUmRQZlIxRzNtbDZTS3Z6cWZ3eDgrVU5NWUFqRUE1ekR1MUhET2RVbUJWcEpRSjNGdkM2NnN0amVTCndsZ3o4bTI1b21VcXBBNGVzWVoraGtjdnMvSTZielpNczNDZAotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t
+  tls.key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JRzJBZ0VBTUJBR0J5cUdTTTQ5QWdFR0JTdUJCQUFpQklHZU1JR2JBZ0VCQkRDREp2RVRMN0pQY2F4ZmZZeGIKbmR1a0x0cmJUVUJqYkFWSy84RTZKcmgweEhxN2JsQkg5dXdrOHROZ0ZCdk9sZnloWkFOaUFBU2NsVGVKVkVKKwp1U3liY0pVKzd5QVdXL2dSMTVBSVIrMGpNY1c2TTlCWGhGejlCVFpOMW5ycWtORWpWblFRMmw5bmlYRGhWRHhpClNyOUNRbGRLUHVBeUNuU0JtZUc2MW9QTmhmTVAxVTEzL2JxelNjME94S0lnRVZ2bzAvMHpoNTA9Ci0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0=
+
+---
+
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: kong
+spec:
+  gatewayClassName: kong
+  listeners:
+  - name: proxy
+    port: 8000
+    protocol: HTTP
+    allowedRoutes:
+      namespaces:
+        from: Same
+  - name: proxy-https
+    port: 8443
+    protocol: HTTPS
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - kind: Secret
+        name: kong-tls-secret 
+        namespace: kong
+    allowedRoutes:
+      namespaces:
+        from: Same
